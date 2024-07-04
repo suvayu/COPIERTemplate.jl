@@ -76,9 +76,8 @@ jobs:
               *index.md) f=${f/%.md/.html};;
               *) f=${f/%.md//index.html};;
             esac
-            [ ! -e $f ] && { echo $f missing; }
-          done < <(find tmp/Guldasta.jl/docs/ -type f -name '*.md' -print0 ) | grep missing
-          [ $? -ne 0 ]
+            [[ ! -e $f ]] && { echo $f missing; } && [[ -e $f ]]
+          done < <(find tmp/Guldasta.jl/docs/ -type f -name '*.md' -print0 )
       - name: Setup tmate session
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
