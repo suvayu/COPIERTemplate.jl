@@ -80,4 +80,5 @@ jobs:
           done < <(find tmp/Guldasta.jl/docs/ -type f -name '*.md' -print0 ) | grep missing
           [[ $? -ne 0 ]]
       - name: Setup tmate session
+        if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
